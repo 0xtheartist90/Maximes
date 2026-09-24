@@ -228,36 +228,47 @@
   font-family: 'Al Evagrande', 'NT Fabulous', serif;
 }
 
-/* Thin double art-deco frame, echoing the original site's gold borders */
-.deco-frame {
-  position: relative;
-  border: 1px solid rgb(181 152 109 / 0.55);
-}
-.deco-frame::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 1px solid rgb(181 152 109 / 0.25);
-  pointer-events: none;
+/* Brand elements taken from maximestoronto.com. In the components layer so Tailwind utilities can still override them. */
+@layer components {
+  /* Gold button: a smooth, even metallic gold so the dark lettering stays legible; outlines on hover */
+  .btn-gold {
+    display: inline-block;
+    border: 1px solid #c9a96a;
+    background: linear-gradient(180deg, #dcc190 0%, #c9a96a 55%, #b8975c 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+    color: #0d0d0d;
+    font-family: 'NT Fabulous', serif;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    /* NT Fabulous ships in one hairline weight; a thin stroke thickens it without faux-bold smearing */
+    -webkit-text-stroke: 0.5px currentColor;
+    paint-order: stroke fill;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .btn-gold:hover {
+    background: #0d0d0d;
+    box-shadow: none;
+    color: #dcc190;
+  }
 }
 
-/* Highlights marquee */
-@keyframes marquee-scroll {
+/* Photo marquees: two identical strips slide left by half the track for a seamless loop */
+@keyframes photo-marquee-scroll {
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }
 }
-.marquee-track {
-  animation: marquee-scroll 55s linear infinite;
+.photo-marquee {
+  animation: photo-marquee-scroll 120s linear infinite;
   will-change: transform;
 }
 
-/* Hero slow zoom */
-@keyframes hero-zoom {
-  from { transform: scale(1); }
-  to   { transform: scale(1.08); }
+/* Hero wordmark fades up on load */
+@keyframes hero-logo-in {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
-.hero-zoom {
-  animation: hero-zoom 18s ease-out forwards;
+.hero-logo {
+  animation: hero-logo-in 1.4s ease-out 0.3s both;
 }
 
 /* Scroll reveal */
@@ -272,7 +283,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track, .hero-zoom { animation: none; }
+  .photo-marquee, .hero-logo { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 

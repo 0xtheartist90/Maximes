@@ -6,7 +6,7 @@ import Lenis from 'lenis';
 
 const SmoothScroll = () => {
     useEffect(() => {
-        const lenis = new Lenis({ lerp: 0.12, anchors: true });
+        const lenis = new Lenis({ lerp: 0.12, anchors: { offset: -64 } });
         let frame: number;
         const raf = (time: number) => {
             lenis.raf(time);

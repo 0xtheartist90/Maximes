@@ -6,7 +6,13 @@ import { useEffect, useRef } from 'react';
 const loaderSrc = (theme: 'wide' | 'standard') =>
     `https://www.opentable.ca/widget/reservation/loader?rid=1306744&type=standard&theme=${theme}&color=8&dark=true&iframe=false&domain=ca&lang=en-CA&newtab=false&ot_source=Restaurant%20website&font=arial&ot_logo=standard&primary_color=000000&primary_font_color=ede8cc&button_color=7b1f21&button_font_color=ffffff&cfe=true`;
 
-const OpenTableWidget = () => {
+const OpenTableWidget = ({
+    theme = 'auto',
+    className = 'flex w-full justify-center'
+}: {
+    theme?: 'auto' | 'standard';
+    className?: string;
+}) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -44,10 +50,11 @@ const OpenTableWidget = () => {
         observer.observe(el, { childList: true, subtree: true });
         dedupe();
         if (!el.querySelector('[id^="ot-widget-container"], script')) {
-            const theme = window.matchMedia('(max-width: 767px)').matches ? 'standard' : 'wide';
+            const resolved =
+                theme === 'standard' || window.matchMedia('(max-width: 767px)').matches ? 'standard' : 'wide';
             const script = document.createElement('script');
             script.type = 'text/javascript';
-            script.src = loaderSrc(theme);
+            script.src = loaderSrc(resolved);
             script.async = true;
             el.appendChild(script);
         }
@@ -56,9 +63,9 @@ const OpenTableWidget = () => {
             observer.disconnect();
             el.replaceChildren();
         };
-    }, []);
+    }, [theme]);
 
-    return <div ref={ref} className='flex w-full max-w-3xl justify-center md:justify-start' />;
+    return <div ref={ref} className={className} />;
 };
 
 export default OpenTableWidget;
