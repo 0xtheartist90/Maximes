@@ -1,0 +1,376 @@
+{
+ "/images/baked-alaska.jpg": {
+  "w": 1086,
+  "h": 1456,
+  "variants": [
+   {
+    "src": "/images/baked-alaska-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/baked-alaska-lg.webp",
+    "w": 1086
+   }
+  ]
+ },
+ "/images/banquette.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/banquette-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/banquette-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/bar-couple.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/bar-couple-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/bar-couple-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/bar-crowd.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/bar-crowd-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/bar-crowd-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/bar-night.jpg": {
+  "w": 2000,
+  "h": 1173,
+  "variants": [
+   {
+    "src": "/images/bar-night-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/bar-night-lg.webp",
+    "w": 1600
+   }
+  ]
+ },
+ "/images/bar-seats.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/bar-seats-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/bar-seats-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/bar-wide.jpg": {
+  "w": 1620,
+  "h": 1080,
+  "variants": [
+   {
+    "src": "/images/bar-wide-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/bar-wide-lg.webp",
+    "w": 1600
+   }
+  ]
+ },
+ "/images/beef-carpaccio.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/beef-carpaccio-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/beef-carpaccio-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/caesar-bar.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/caesar-bar-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/caesar-bar-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/cocktail-red.jpg": {
+  "w": 780,
+  "h": 1688,
+  "variants": [
+   {
+    "src": "/images/cocktail-red-sm.webp",
+    "w": 780
+   }
+  ]
+ },
+ "/images/curtain-table.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/curtain-table-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/curtain-table-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/dining-room.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/dining-room-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/dining-room-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/dover-sole.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/dover-sole-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/dover-sole-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/espresso-martini.jpg": {
+  "w": 1080,
+  "h": 1662,
+  "variants": [
+   {
+    "src": "/images/espresso-martini-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/espresso-martini-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/martini-pour.jpg": {
+  "w": 1078,
+  "h": 1456,
+  "variants": [
+   {
+    "src": "/images/martini-pour-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/martini-pour-lg.webp",
+    "w": 1078
+   }
+  ]
+ },
+ "/images/octopus.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/octopus-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/octopus-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/oysters-table.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/oysters-table-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/oysters-table-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/patio-dining.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/patio-dining-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/patio-dining-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/patio.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/patio-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/patio-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/prestige-caesars.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/prestige-caesars-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/prestige-caesars-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/private-room.jpg": {
+  "w": 2125,
+  "h": 1417,
+  "variants": [
+   {
+    "src": "/images/private-room-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/private-room-lg.webp",
+    "w": 1600
+   }
+  ]
+ },
+ "/images/seafood-tower-table.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/seafood-tower-table-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/seafood-tower-table-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/steak-lobster.jpg": {
+  "w": 1274,
+  "h": 1708,
+  "variants": [
+   {
+    "src": "/images/steak-lobster-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/steak-lobster-lg.webp",
+    "w": 1274
+   }
+  ]
+ },
+ "/images/steak-pour.jpg": {
+  "w": 2000,
+  "h": 712,
+  "variants": [
+   {
+    "src": "/images/steak-pour-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/steak-pour-lg.webp",
+    "w": 1600
+   }
+  ]
+ },
+ "/images/table-flambe.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/table-flambe-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/table-flambe-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/tomahawk.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/tomahawk-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/tomahawk-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/tuna-tartare.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/tuna-tartare-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/tuna-tartare-lg.webp",
+    "w": 1080
+   }
+  ]
+ }
+}

@@ -6,6 +6,7 @@ import LightboxImage from '@/components/lightbox-image';
 import MenuTabs from '@/components/menu-tabs';
 import OpenTableWidget from '@/components/opentable-widget';
 import PhotoMarquee from '@/components/photo-marquee';
+import ResponsiveImg from '@/components/responsive-img';
 import Reveal from '@/components/reveal';
 
 const PHONE_HREF = 'tel:+16474847476';
@@ -82,22 +83,25 @@ const Page = () => {
                 </div>
             </nav>
 
-            {/* ── Hero: reel with the wordmark, reservation widget along the bottom ── */}
-            <section id='top' className='relative mt-16 flex min-h-[calc(100svh-64px)] flex-col bg-black'>
-                <HeroVideo className='absolute inset-0 h-full w-full object-cover' />
-                {/* Soft vignette so the gold wordmark reads, deepening at the bottom behind the widget */}
-                <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(0_0_0/0.55)_0%,rgb(0_0_0/0.25)_55%,rgb(0_0_0/0.35)_100%)]' />
-                <div className='absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 to-transparent' />
-                <div className='relative flex flex-1 items-center justify-center px-8 py-16'>
-                    <h1 className='hero-logo w-[min(78vw,620px)]'>
-                        <img
-                            src='/images/maximes-logo-gold.png'
-                            alt='Maxime’s Steakhouse Toronto: steak, seafood and cocktails in King West'
-                            className='w-full drop-shadow-[0_2px_18px_rgb(0_0_0/0.75)]'
-                        />
-                    </h1>
+            {/* ── Hero: reel with the wordmark. The reservation widget sits over the bottom of the video on
+                 larger screens and drops below it on phones so it never covers the reel. ── */}
+            <section id='top' className='relative mt-16 bg-black'>
+                <div className='relative flex h-[calc(100svh-64px)] min-h-[480px] items-center justify-center overflow-hidden px-8'>
+                    <HeroVideo className='absolute inset-0 h-full w-full object-cover' />
+                    {/* Soft vignette so the gold wordmark reads, deepening at the bottom behind the widget */}
+                    <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(0_0_0/0.55)_0%,rgb(0_0_0/0.25)_55%,rgb(0_0_0/0.35)_100%)]' />
+                    <div className='absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 to-transparent' />
+                    <div className='relative'>
+                        <h1 className='hero-logo w-[min(78vw,620px)]'>
+                            <img
+                                src='/images/maximes-logo-gold.webp'
+                                alt='Maxime’s Steakhouse Toronto: steak, seafood and cocktails in King West'
+                                className='w-full drop-shadow-[0_2px_18px_rgb(0_0_0/0.75)]'
+                            />
+                        </h1>
+                    </div>
                 </div>
-                <div className='relative px-5 pb-8 md:pb-10'>
+                <div className='relative px-5 py-6 md:absolute md:inset-x-0 md:bottom-0 md:pt-0 md:pb-10'>
                     <OpenTableWidget />
                 </div>
             </section>
@@ -105,8 +109,9 @@ const Page = () => {
             {/* ── Intro: copy on solid black beside the steak and lobster photo ── */}
             <section className='grid bg-black md:min-h-[640px] md:grid-cols-2'>
                 <div className='relative aspect-[4/3] md:order-2 md:aspect-auto'>
-                    <img
+                    <ResponsiveImg
                         src='/images/steak-pour.jpg'
+                        sizes='(max-width: 767px) 100vw, 50vw'
                         alt='Sauce poured over sliced steak and grilled lobster with red wine and sides at Maxime’s'
                         loading='lazy'
                         className='absolute inset-0 h-full w-full object-cover object-[48%_center]'
@@ -146,18 +151,16 @@ const Page = () => {
 
             {/* ── Our Menu: hand-held menu banner, then the menu itself ── */}
             <section id='menu' className='bg-black'>
-                <div className='relative flex h-[55vh] min-h-[380px] items-end justify-center overflow-hidden pb-10 md:pb-14'>
-                    <img
-                        src='/images/brand/menu-hand.jpg'
-                        alt='A guest holding the Maxime’s menu'
-                        loading='lazy'
-                        className='absolute inset-0 h-full w-full object-cover object-[56%_22%] brightness-125'
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent' />
-                    <Title className='relative'>Our Menu</Title>
-                </div>
+                <Reveal className='px-6 pt-16 text-center md:pt-20'>
+                    <Title>Our Menu</Title>
+                    <div className='mx-auto mt-6 flex max-w-xs items-center gap-4' aria-hidden='true'>
+                        <span className='h-px flex-1 bg-gradient-to-r from-transparent to-[#b5986d]/80' />
+                        <span className='h-2 w-2 rotate-45 border border-[#b5986d]' />
+                        <span className='h-px flex-1 bg-gradient-to-l from-transparent to-[#b5986d]/80' />
+                    </div>
+                </Reveal>
 
-                <div className='px-6 py-16 md:px-12 md:py-24'>
+                <div className='px-6 pt-12 pb-16 md:px-12 md:pt-16 md:pb-24'>
                     <div className='mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[0.9fr_1fr] md:gap-20'>
                         <Reveal>
                             {/* Photo with a thin gold frame offset behind it, as in Private Dining */}
@@ -166,6 +169,7 @@ const Page = () => {
                                 <div className='relative aspect-[4/5] overflow-hidden'>
                                     <LightboxImage
                                         src='/images/seafood-tower-table.jpg'
+                                        sizes='(max-width: 767px) 90vw, 450px'
                                         alt='Maxime’s Smoking Hot Tower with oysters, shrimp and lobster'
                                         className='h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]'
                                     />
@@ -218,7 +222,7 @@ const Page = () => {
                         </Reveal>
                         <Reveal delay={150} className='md:order-1'>
                             <div className='text-sm tracking-[0.25em] text-[#b5986d] uppercase'>House Favourite</div>
-                            <Title className='mt-4'>Spicy Vodka Rigatoni</Title>
+                            <Title className='mt-4'>“This spicy vodka rigatoni is pure art”</Title>
                             <p className='mt-6 text-lg leading-relaxed text-[#ede8cc]/80'>
                                 House-made rigatoni tossed in a spicy vodka sauce with pecorino romano, parmigiano,
                                 bomba chili and fresh basil.
@@ -248,8 +252,9 @@ const Page = () => {
 
             {/* ── Maxime's Nights: centred editorial composition over the bar at night ── */}
             <section className='relative overflow-hidden bg-black'>
-                <img
+                <ResponsiveImg
                     src='/images/bar-night.jpg'
+                    sizes='100vw'
                     alt='A full house beneath brass pendant lamps and the gold-lit arched bar at Maxime’s'
                     loading='lazy'
                     className='absolute inset-0 h-full w-full object-cover object-[52%_center]'
@@ -309,6 +314,7 @@ const Page = () => {
                             <div className='relative aspect-[4/3] overflow-hidden'>
                                 <LightboxImage
                                     src='/images/private-room.jpg'
+                                    sizes='(max-width: 767px) 90vw, 50vw'
                                     alt='Private event space with digital pillars, velvet curtains and long tables'
                                     className='h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]'
                                 />
@@ -354,18 +360,24 @@ const Page = () => {
 
             {/* ── Reserve Now ── */}
             <section id='reserve' className='relative overflow-hidden bg-black'>
-                <img
+                <ResponsiveImg
                     src='/images/table-flambe.jpg'
+                    sizes='100vw'
                     alt=''
                     loading='lazy'
                     className='absolute inset-0 h-full w-full object-cover'
                 />
-                <div className='absolute inset-0 bg-black/65' />
+                <div className='absolute inset-0 bg-black/70' />
+                <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(0_0_0/0.45)_0%,transparent_70%)]' />
                 <div className='relative px-6 py-28 text-center md:py-40'>
                     <Reveal>
-                        <Title gold>Reserve Now</Title>
-                        <p className='mt-4 text-[11px] tracking-[0.15em] text-[#ede8cc]/80 uppercase md:text-sm md:tracking-[0.2em]'>
-                            Open daily 5pm to 2am · DJ from 8:30pm
+                        <h2 className='font-display text-5xl leading-tight text-[#e0bd6e] [text-shadow:0_2px_18px_rgb(0_0_0/0.8)] md:text-[72px]'>
+                            Reserve Now
+                        </h2>
+                        <p className='font-display mt-5 text-lg text-[#ede8cc] uppercase [text-shadow:0_1px_12px_rgb(0_0_0/0.9)] md:text-2xl'>
+                            Open daily 5pm to 2am
+                            <span className='mx-3 hidden text-[#b5986d] md:inline'>·</span>
+                            <span className='block md:inline'>DJ from 8:30pm</span>
                         </p>
                         <div className='mt-10'>
                             <OpenTableWidget />
@@ -378,7 +390,7 @@ const Page = () => {
             <footer className='border-t border-[#b5986d]/20 bg-black px-6 pt-20 pb-10 md:px-12'>
                 <div className='mx-auto max-w-5xl text-center'>
                     <img
-                        src='/images/maximes-logo-gold.png'
+                        src='/images/maximes-logo-gold.webp'
                         alt='Maxime’s: Steak, Seafood, Cocktails'
                         className='mx-auto w-56 md:w-64'
                     />
@@ -392,7 +404,7 @@ const Page = () => {
                     <div className='mt-14 grid gap-14 md:grid-cols-3 md:gap-10'>
                         <div>
                             <h3 className='font-display text-xl tracking-wide text-[#e0bd6e] uppercase'>Visit</h3>
-                            <p className='mt-5 text-[15px] leading-relaxed text-[#ede8cc]/85'>
+                            <p className='mt-5 text-[0.9375rem] leading-relaxed text-[#ede8cc]/85'>
                                 77 Portland St.
                                 <br />
                                 Toronto, ON M5V 2M9
@@ -401,14 +413,14 @@ const Page = () => {
                                 href='https://maps.app.goo.gl/CKNvpvrpiDrt5b296'
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                className='font-display mt-4 inline-block border-b border-[#b5986d]/60 pb-0.5 text-[15px] tracking-[0.12em] text-[#e0bd6e] uppercase transition-colors hover:border-[#e0bd6e]'>
+                                className='font-display mt-4 inline-block border-b border-[#b5986d]/60 pb-0.5 text-[0.9375rem] tracking-[0.12em] text-[#e0bd6e] uppercase transition-colors hover:border-[#e0bd6e]'>
                                 Get Directions
                             </a>
                         </div>
 
                         <div>
                             <h3 className='font-display text-xl tracking-wide text-[#e0bd6e] uppercase'>Hours</h3>
-                            <dl className='mx-auto mt-5 max-w-[17rem] space-y-2.5 text-[15px]'>
+                            <dl className='mx-auto mt-5 max-w-[17rem] space-y-2.5 text-[0.9375rem]'>
                                 {[
                                     { day: 'Daily', time: '5pm to 2am' },
                                     { day: 'Sunday brunch', time: '11am to 3:30pm' },
@@ -432,7 +444,7 @@ const Page = () => {
                             </a>
                             <a
                                 href='mailto:info@maximestoronto.com'
-                                className='mt-2 block text-[15px] text-[#ede8cc]/75 transition-colors hover:text-[#e0bd6e]'>
+                                className='mt-2 block text-[0.9375rem] text-[#ede8cc]/75 transition-colors hover:text-[#e0bd6e]'>
                                 info@maximestoronto.com
                             </a>
                             <a
@@ -440,7 +452,7 @@ const Page = () => {
                                 target='_blank'
                                 rel='noopener noreferrer'
                                 aria-label='Follow Maxime’s on Instagram'
-                                className='mt-4 inline-flex items-center gap-2 text-[15px] text-[#ede8cc]/75 transition-colors hover:text-[#e0bd6e]'>
+                                className='mt-4 inline-flex items-center gap-2 text-[0.9375rem] text-[#ede8cc]/75 transition-colors hover:text-[#e0bd6e]'>
                                 <svg
                                     width='18'
                                     height='18'

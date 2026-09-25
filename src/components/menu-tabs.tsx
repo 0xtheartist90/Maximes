@@ -268,7 +268,7 @@ const MenuTabs = () => {
                                     {group.cuts.map((c) => (
                                         <li
                                             key={c.cut}
-                                            className='flex items-baseline justify-between gap-3 text-[15px]'>
+                                            className='flex items-baseline justify-between gap-3 text-[0.9375rem]'>
                                             <span className='text-[#ede8cc]/85'>{c.cut}</span>
                                             <span className='font-display shrink-0 text-lg text-[#b5986d]'>
                                                 {c.price}
@@ -292,7 +292,7 @@ const MenuTabs = () => {
                                     <span className='font-display shrink-0 text-xl text-[#b5986d]'>{item.price}</span>
                                 </div>
                                 {item.desc && (
-                                    <p className='mt-2 text-[15px] leading-relaxed text-[#ede8cc]/65 lowercase'>
+                                    <p className='mt-2 text-[0.9375rem] leading-relaxed text-[#ede8cc]/65 lowercase'>
                                         {item.desc}
                                     </p>
                                 )}

@@ -1,10 +1,27 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
+import { responsive } from '@/lib/responsive';
+
 import { createPortal } from 'react-dom';
 
-const LightboxImage = ({ src, alt, className = '' }: { src: string; alt: string; className?: string }) => {
+const LightboxImage = ({
+    src,
+    alt,
+    sizes = '(max-width: 767px) 100vw, 50vw',
+    loading = 'lazy',
+    className = ''
+}: {
+    src: string;
+    alt: string;
+    /** How wide the thumbnail renders, so the browser can pick the right WebP variant. */
+    sizes?: string;
+    loading?: 'lazy' | 'eager';
+    className?: string;
+}) => {
     const [open, setOpen] = useState(false);
+    const image = responsive(src);
 
     useEffect(() => {
         if (!open) return;
@@ -21,9 +38,12 @@ const LightboxImage = ({ src, alt, className = '' }: { src: string; alt: string;
     return (
         <>
             <img
-                src={src}
+                src={image.src}
+                srcSet={image.srcSet}
+                sizes={sizes}
                 alt={alt}
-                loading='lazy'
+                loading={loading}
+                decoding='async'
                 className={`cursor-zoom-in ${className}`}
                 onClick={() => setOpen(true)}
             />
@@ -35,7 +55,7 @@ const LightboxImage = ({ src, alt, className = '' }: { src: string; alt: string;
                         aria-label={alt}
                         className='fixed inset-0 z-[100] flex cursor-zoom-out items-center justify-center bg-black'
                         onClick={() => setOpen(false)}>
-                        <img src={src} alt={alt} className='h-full w-full object-contain' />
+                        <img src={image.full} alt={alt} className='h-full w-full object-contain' />
                         <button
                             aria-label='Close'
                             onClick={() => setOpen(false)}

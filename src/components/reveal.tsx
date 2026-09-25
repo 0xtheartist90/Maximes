@@ -2,7 +2,15 @@
 
 import { type ReactNode, useEffect, useRef } from 'react';
 
-const Reveal = ({ children, className = '', delay = 0 }: { children: ReactNode; className?: string; delay?: number }) => {
+const Reveal = ({
+    children,
+    className = '',
+    delay = 0
+}: {
+    children: ReactNode;
+    className?: string;
+    delay?: number;
+}) => {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

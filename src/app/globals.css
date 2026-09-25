@@ -215,6 +215,13 @@
   font-display: swap;
 }
 
+/* Phones: everything is sized in rem, so a slightly larger root scales all type up evenly */
+@media (max-width: 767px) {
+  html {
+    font-size: 110%;
+  }
+}
+
 .maximes-body {
   background-color: #000;
   color: #ede8cc;
