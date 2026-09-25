@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import HeroVideo from '@/components/hero-video';
+import InViewVideo from '@/components/in-view-video';
 import LightboxImage from '@/components/lightbox-image';
 import MenuTabs from '@/components/menu-tabs';
 import OpenTableWidget from '@/components/opentable-widget';
@@ -198,7 +199,48 @@ const Page = () => {
                     <Reveal className='mt-20'>
                         <MenuTabs />
                     </Reveal>
-                    <Reveal className='mt-16 text-center'>
+
+                    {/* Spicy Vodka Rigatoni: mirrors the tower feature, with the dish as a looping clip */}
+                    <div className='mx-auto mt-24 grid max-w-6xl items-center gap-14 md:grid-cols-[1fr_0.9fr] md:gap-20'>
+                        <Reveal className='md:order-2'>
+                            <div className='relative mx-auto mr-4 mb-4 max-w-md md:mr-6 md:mb-6'>
+                                <div className='absolute inset-0 translate-x-4 translate-y-4 border border-[#b5986d]/50 md:translate-x-6 md:translate-y-6' />
+                                <div className='relative aspect-[4/5] overflow-hidden bg-black'>
+                                    <InViewVideo
+                                        webm='/video/rigatoni.webm'
+                                        mp4='/video/rigatoni.mp4'
+                                        poster='/video/rigatoni-poster.jpg'
+                                        label='Spicy vodka rigatoni being tossed, flambéed and finished with parmigiano and basil'
+                                        className='h-full w-full object-cover'
+                                    />
+                                </div>
+                            </div>
+                        </Reveal>
+                        <Reveal delay={150} className='md:order-1'>
+                            <div className='text-sm tracking-[0.25em] text-[#b5986d] uppercase'>House Favourite</div>
+                            <Title className='mt-4'>Spicy Vodka Rigatoni</Title>
+                            <p className='mt-6 text-lg leading-relaxed text-[#ede8cc]/80'>
+                                House-made rigatoni tossed in a spicy vodka sauce with pecorino romano, parmigiano,
+                                bomba chili and fresh basil.
+                            </p>
+                            <div className='mt-8 flex items-end gap-8 border-t border-[#b5986d]/50 pt-5'>
+                                <div>
+                                    <div className='font-display text-5xl text-[#e0bd6e]'>29</div>
+                                    <div className='mt-1 text-xs tracking-[0.2em] text-[#ede8cc]/70 uppercase'>
+                                        To share
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className='font-display text-3xl text-[#e0bd6e]'>+45</div>
+                                    <div className='mt-1 text-xs tracking-[0.2em] text-[#ede8cc]/70 uppercase'>
+                                        Half lobster
+                                    </div>
+                                </div>
+                            </div>
+                        </Reveal>
+                    </div>
+
+                    <Reveal className='mt-20 text-center'>
                         <CallButton />
                     </Reveal>
                 </div>
@@ -234,12 +276,12 @@ const Page = () => {
                             <span className='h-2 w-2 rotate-45 border border-[#b5986d]' />
                             <span className='h-px flex-1 bg-gradient-to-l from-transparent to-[#b5986d]/80' />
                         </div>
-                        <ul className='font-display mx-auto mt-10 flex flex-col items-center gap-4 text-xl text-[#ede8cc] uppercase [text-shadow:0_1px_12px_rgb(0_0_0/0.8)] md:flex-row md:justify-center md:gap-0 md:text-2xl'>
+                        <ul className='font-display mx-auto mt-10 flex flex-col items-center gap-5 text-2xl text-white uppercase [-webkit-text-stroke:0.6px_currentColor] [text-shadow:0_2px_14px_rgb(0_0_0/0.9)] md:flex-row md:justify-center md:gap-0 md:text-[32px]'>
                             {['DJ from 8:30pm', 'Theatrical cocktails', 'Open until 2am'].map((item, i) => (
                                 <li key={item} className='flex items-center whitespace-nowrap'>
                                     {i > 0 && (
                                         <span
-                                            className='mr-4 hidden h-6 w-px bg-[#b5986d]/60 md:mr-8 md:block'
+                                            className='mr-4 hidden h-8 w-px bg-[#b5986d]/70 md:mr-8 md:block'
                                             aria-hidden='true'
                                         />
                                     )}
