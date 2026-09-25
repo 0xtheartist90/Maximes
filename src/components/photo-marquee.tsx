@@ -12,24 +12,40 @@ type Photo = { src: string; alt: string };
 const PhotoMarquee = ({ photos }: { photos: Photo[] }) => {
     const ref = useRef<HTMLDivElement>(null);
     // Photos further along the strip sit off-screen sideways, so native lazy loading would only fetch
-    // them as they slide in. Once the strip is about a screen away, load the whole set up front.
+    // them as they slide in, which on phones means they pop in late. Instead the whole set loads early:
+    // in the background once the page is idle after load, or as soon as the strip is within ~3 screens.
     const [near, setNear] = useState(false);
 
     useEffect(() => {
         const el = ref.current;
         if (!el) return;
+        const load = () => setNear(true);
+
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting) {
-                    setNear(true);
-                    observer.disconnect();
-                }
+                if (entry.isIntersecting) load();
             },
-            { rootMargin: '100% 0px' }
+            { rootMargin: '300% 0px' }
         );
         observer.observe(el);
 
-        return () => observer.disconnect();
+        let idle: number | undefined;
+        const whenIdle = () => {
+            idle = window.requestIdleCallback
+                ? window.requestIdleCallback(load, { timeout: 2500 })
+                : window.setTimeout(load, 1500);
+        };
+        if (document.readyState === 'complete') whenIdle();
+        else window.addEventListener('load', whenIdle, { once: true });
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('load', whenIdle);
+            if (idle !== undefined) {
+                if (window.cancelIdleCallback) window.cancelIdleCallback(idle);
+                else window.clearTimeout(idle);
+            }
+        };
     }, []);
 
     return (
