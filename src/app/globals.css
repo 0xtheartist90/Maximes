@@ -264,9 +264,11 @@
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }
 }
-.photo-marquee {
-  animation: photo-marquee-scroll 120s linear infinite;
-  will-change: transform;
+@media (min-width: 768px) {
+  .photo-marquee {
+    animation: photo-marquee-scroll 120s linear infinite;
+    will-change: transform;
+  }
 }
 
 /* Hero wordmark fades up on load */

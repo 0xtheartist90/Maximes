@@ -6,7 +6,8 @@ import LightboxImage from '@/components/lightbox-image';
 
 type Photo = { src: string; alt: string };
 
-// Endless strip of photos at a shared height, each at its natural width.
+// Strip of photos at a shared height, each at its natural width: an endless marquee on larger
+// screens, a swipeable carousel on phones.
 // Two identical copies slide by half the track, so the loop is seamless. Duration scales with the
 // number of photos so every strip moves at roughly the same pace.
 const PhotoMarquee = ({ photos }: { photos: Photo[] }) => {
@@ -48,13 +49,20 @@ const PhotoMarquee = ({ photos }: { photos: Photo[] }) => {
         };
     }, []);
 
+    // Phones get a swipeable strip that snaps to each photo; larger screens get the auto-scrolling
+    // marquee, which needs a second copy of the photos for its seamless loop.
     return (
-        <div ref={ref} className='overflow-hidden'>
+        <div
+            ref={ref}
+            className='snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] md:snap-none md:overflow-hidden [&::-webkit-scrollbar]:hidden'>
             <div className='photo-marquee flex w-max' style={{ animationDuration: `${photos.length * 8}s` }}>
                 {[0, 1].map((copy) => (
-                    <div key={copy} className='flex shrink-0 gap-3 pr-3 md:gap-4 md:pr-4' aria-hidden={copy === 1}>
+                    <div
+                        key={copy}
+                        className={`shrink-0 gap-3 md:gap-4 md:pr-4 ${copy === 0 ? 'flex px-6 md:px-0' : 'hidden md:flex'}`}
+                        aria-hidden={copy === 1}>
                         {photos.map((photo) => (
-                            <div key={photo.src} className='h-[60vh] max-h-[680px] min-h-[360px] shrink-0'>
+                            <div key={photo.src} className='h-[60vh] max-h-[680px] min-h-[360px] shrink-0 snap-center'>
                                 <LightboxImage
                                     src={photo.src}
                                     alt={copy === 1 ? '' : photo.alt}
