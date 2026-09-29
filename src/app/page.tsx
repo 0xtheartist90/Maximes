@@ -19,13 +19,18 @@ const PLATES = [
         alt: 'Sliced prime steak with grilled half lobster and lemon at Maxime’s Toronto'
     },
     { src: '/images/tomahawk.jpg', alt: 'Carved tomahawk steak on a wooden board with house bread' },
-    { src: '/images/oysters-table.jpg', alt: 'Guests sharing oysters and seafood at Maxime’s steakhouse' },
     { src: '/images/tuna-tartare.jpg', alt: 'Tuna tartare with puffed wild rice and shaved truffle' },
     { src: '/images/dover-sole.jpg', alt: 'Whole fish in herb butter with lemon at Maxime’s' },
     { src: '/images/beef-carpaccio.jpg', alt: 'Thinly sliced beef with herbs and parmesan on a dark wood table' },
     { src: '/images/baked-alaska.jpg', alt: 'Bananas Foster Baked Alaska being flambéed' },
     { src: '/images/octopus.jpg', alt: 'Grilled octopus with greens and lemon on a white plate' },
     { src: '/images/seafood-tower-table.jpg', alt: 'Seafood tower with oysters, shrimp and lobster beside a steak' }
+];
+
+const TRIPTYCH = [
+    { src: '/images/oysters-table.jpg', alt: 'Guests laughing over oysters and a seafood tower at Maxime’s' },
+    { src: '/images/menu-reading.jpg', alt: 'A guest reading the Maxime’s menu at the bar' },
+    { src: '/images/table-flambe.jpg', alt: 'A cocktail over a bed of sparkling embers beside the seafood tower' }
 ];
 
 const GALLERY: { src: string; alt: string }[] = [
@@ -37,7 +42,6 @@ const GALLERY: { src: string; alt: string }[] = [
     { src: '/images/prestige-caesars.jpg', alt: 'Le Prestige Caesars topped with lobster, shrimp and oysters' },
     { src: '/images/bar-crowd.jpg', alt: 'Guests gathering at the bar on a busy night' },
     { src: '/images/espresso-martini.jpg', alt: 'Espresso martini with crema on the marble bar' },
-    { src: '/images/bar-seats.jpg', alt: 'Two guests with cocktails at the backlit bar' },
     { src: '/images/caesar-bar.jpg', alt: 'Bartender garnishing Caesars at the bar' },
     { src: '/images/bar-couple.jpg', alt: 'Couple at the bar in front of the champagne wall' },
     { src: '/images/cocktail-red.jpg', alt: 'Red foam-topped cocktail being poured in the dark' },
@@ -106,16 +110,30 @@ const Page = () => {
                 </div>
             </section>
 
-            {/* ── Intro: copy on solid black beside the steak and lobster photo ── */}
-            <section className='grid bg-black md:min-h-[640px] md:grid-cols-2'>
-                <div className='relative aspect-[4/3] md:order-2 md:aspect-auto'>
+            {/* ── Intro: copy on solid black beside a photo (phones) or a triptych (larger screens) ── */}
+            <section className='grid bg-black md:min-h-[640px] md:grid-cols-[1fr_1.35fr]'>
+                <div className='relative aspect-[4/3] md:hidden'>
                     <ResponsiveImg
                         src='/images/steak-pour.jpg'
-                        sizes='(max-width: 767px) 100vw, 50vw'
+                        sizes='100vw'
                         alt='Sauce poured over sliced steak and grilled lobster with red wine and sides at Maxime’s'
                         loading='lazy'
                         className='absolute inset-0 h-full w-full object-cover object-[48%_center]'
                     />
+                </div>
+                <div className='hidden items-center py-16 pr-8 md:order-2 md:grid md:grid-cols-3 md:gap-4 lg:pr-12'>
+                    {TRIPTYCH.map((photo, i) => (
+                        <Reveal key={photo.src} delay={i * 120} className={i === 1 ? 'md:translate-y-8' : ''}>
+                            <div className='aspect-[2/3] overflow-hidden'>
+                                <LightboxImage
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    sizes='25vw'
+                                    className='h-full w-full object-cover transition-transform duration-700 hover:scale-[1.04]'
+                                />
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
                 <div className='flex items-center px-6 py-16 md:px-12 md:py-24 lg:px-20'>
                     <Reveal className='max-w-lg'>
@@ -306,16 +324,16 @@ const Page = () => {
 
             {/* ── Private dining and events ── */}
             <section id='events' className='bg-black px-6 py-20 md:px-12 md:py-32'>
-                <div className='mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1.15fr_1fr] md:gap-20'>
+                <div className='mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[0.9fr_1fr] md:gap-20'>
                     <Reveal>
                         {/* Photo with a thin gold frame offset behind it */}
-                        <div className='relative mr-4 mb-4 md:mr-6 md:mb-6'>
+                        <div className='relative mx-auto mr-4 mb-4 max-w-md md:mr-6 md:mb-6'>
                             <div className='absolute inset-0 translate-x-4 translate-y-4 border border-[#b5986d]/50 md:translate-x-6 md:translate-y-6' />
-                            <div className='relative aspect-[4/3] overflow-hidden'>
+                            <div className='relative aspect-[4/5] overflow-hidden'>
                                 <LightboxImage
-                                    src='/images/private-room.jpg'
-                                    sizes='(max-width: 767px) 90vw, 50vw'
-                                    alt='Private event space with digital pillars, velvet curtains and long tables'
+                                    src='/images/bar-seats.jpg'
+                                    sizes='(max-width: 767px) 90vw, 450px'
+                                    alt='Two guests toasting with cocktails at the gold-lit backlit bar'
                                     className='h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]'
                                 />
                             </div>

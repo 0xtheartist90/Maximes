@@ -275,20 +275,6 @@
    }
   ]
  },
- "/images/private-room.jpg": {
-  "w": 2125,
-  "h": 1417,
-  "variants": [
-   {
-    "src": "/images/private-room-sm.webp",
-    "w": 800
-   },
-   {
-    "src": "/images/private-room-lg.webp",
-    "w": 1600
-   }
-  ]
- },
  "/images/seafood-tower-table.jpg": {
   "w": 1080,
   "h": 1620,
@@ -369,6 +355,20 @@
    },
    {
     "src": "/images/tuna-tartare-lg.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "/images/menu-reading.jpg": {
+  "w": 1080,
+  "h": 1620,
+  "variants": [
+   {
+    "src": "/images/menu-reading-sm.webp",
+    "w": 800
+   },
+   {
+    "src": "/images/menu-reading-lg.webp",
     "w": 1080
    }
   ]
