@@ -112,13 +112,13 @@ const Page = () => {
 
             {/* ── Intro: copy on solid black beside a photo (phones) or a triptych (larger screens) ── */}
             <section className='grid bg-black md:min-h-[640px] md:grid-cols-[1fr_1.35fr]'>
-                <div className='relative aspect-[4/3] md:hidden'>
+                <div className='relative aspect-[4/5] md:hidden'>
                     <ResponsiveImg
-                        src='/images/steak-pour.jpg'
+                        src='/images/oysters-table.jpg'
                         sizes='100vw'
-                        alt='Sauce poured over sliced steak and grilled lobster with red wine and sides at Maxime’s'
+                        alt='Guests laughing over oysters and a seafood tower at Maxime’s'
                         loading='lazy'
-                        className='absolute inset-0 h-full w-full object-cover object-[48%_center]'
+                        className='absolute inset-0 h-full w-full object-cover object-[50%_30%]'
                     />
                 </div>
                 <div className='hidden items-center py-16 pr-8 md:order-2 md:grid md:grid-cols-3 md:gap-4 lg:pr-12'>

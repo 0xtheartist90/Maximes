@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 type MenuItem = { name: string; price: string; desc?: string };
 type SteakGroup = { name: string; origin: string; cuts: { cut: string; price: string }[] };
@@ -231,23 +231,37 @@ const SECTIONS: Section[] = [
 // Styled after maximestoronto.com/food-menu: underlined script tabs, capitalised names over a gold hairline.
 const MenuTabs = () => {
     const [active, setActive] = useState(0);
+    const tabs = useRef<(HTMLButtonElement | null)[]>([]);
     const section = SECTIONS[active];
+
+    const select = (i: number) => {
+        setActive(i);
+        // On phones the tabs sit in one swipeable row; bring the chosen one into view.
+        tabs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    };
 
     return (
         <div>
-            <div className='flex flex-wrap justify-center gap-x-8 gap-y-4 md:gap-x-12'>
-                {SECTIONS.map((s, i) => (
-                    <button
-                        key={s.label}
-                        onClick={() => setActive(i)}
-                        className={`font-display border-b pb-1 text-xl transition-colors md:text-2xl ${
-                            i === active
-                                ? 'border-[#b5986d] text-[#b5986d]'
-                                : 'border-[#ede8cc]/60 text-[#ede8cc] hover:border-[#b5986d] hover:text-[#b5986d]'
-                        }`}>
-                        {s.label}
-                    </button>
-                ))}
+            {/* Phones: one swipeable row with a fade hinting at more. Larger screens: centred, wrapping. */}
+            <div className='relative -mx-6 md:mx-0'>
+                <div className='flex snap-x scroll-px-6 gap-x-7 overflow-x-auto px-6 pb-2 [scrollbar-width:none] md:flex-wrap md:justify-center md:gap-x-12 md:gap-y-4 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden'>
+                    {SECTIONS.map((s, i) => (
+                        <button
+                            key={s.label}
+                            ref={(el) => {
+                                tabs.current[i] = el;
+                            }}
+                            onClick={() => select(i)}
+                            className={`font-display shrink-0 snap-start border-b pb-1 text-xl whitespace-nowrap transition-colors md:text-2xl ${
+                                i === active
+                                    ? 'border-[#b5986d] text-[#b5986d]'
+                                    : 'border-[#ede8cc]/60 text-[#ede8cc] hover:border-[#b5986d] hover:text-[#b5986d]'
+                            }`}>
+                            {s.label}
+                        </button>
+                    ))}
+                </div>
+                <div className='pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-black to-transparent md:hidden' />
             </div>
 
             <div className='mx-auto mt-14 max-w-5xl'>
